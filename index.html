@@ -133,9 +133,21 @@
   figure { margin: 0; }
   .shot { border-radius: 10px; border: 1px solid var(--border); background: var(--surface); overflow: hidden; }
   .shot-pair { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: var(--space-m); align-items: end; }
+  .zoomable { cursor: zoom-in; }
+  .zoom { max-width: 96vw; max-height: 96vh; padding: 0; border: 0; border-radius: 10px; background: transparent; overflow: auto; }
+  .zoom::backdrop { background: rgb(0 0 0 / 0.75); }
+  .zoom img { max-width: none; cursor: zoom-out; border-radius: 10px; }
+  .zoom-hint { color: var(--muted); }
   figcaption { margin-top: var(--space-xs); color: var(--muted); font-size: 14px; }
+  /* Wide band: text on top, the screenshot below at (almost) its real size, so it stays readable. */
+  .band.wide, .band.wide.flip { grid-template-columns: minmax(0, 1fr); gap: var(--space-l); }
+  .band.wide .band-text { order: 0; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-s) var(--space-2xl); align-items: start; }
+  @media (max-width: 860px) { .band.wide .band-text { grid-template-columns: minmax(0, 1fr); } }
+  .band.wide figure { max-width: 1080px; }
+  .band.wide .shot-pair { max-width: none; grid-template-columns: minmax(0, 601px) minmax(0, 475px); justify-content: start; align-items: start; gap: var(--space-l); }
+  @media (max-width: 860px) { .band.wide .shot-pair { grid-template-columns: minmax(0, 1fr); } .band.wide .shot-pair img { justify-self: center; } }
   .band.slim { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
-  .band.slim figure { justify-self: center; max-width: 380px; }
+  .band.slim figure { justify-self: center; max-width: 455px; }
   @media (max-width: 860px) { .band.slim { grid-template-columns: minmax(0, 1fr); } }
   .quiet { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--space-xl) var(--space-2xl); padding-block: var(--space-2xl) var(--space-l); border-top: 1px solid var(--border); }
   .quiet h3 { margin: 0 0 var(--space-xs); font-size: 20px; }
@@ -211,7 +223,7 @@
       <h2 id="funkcje-title">Co potrafi</h2>
       <p class="intro">Wszystko poniżej jest w wersji 1.0.0. Zrzuty pochodzą z prawdziwego Pulse, na danych testowych.</p>
 
-      <div class="band">
+      <div class="band wide">
         <div class="band-text">
           <h3><span class="src src-gitlab"><svg><use href="#i-branch"/></svg></span>GitLab: review, MR-y, pipeline'y</h3>
           <ul>
@@ -222,12 +234,12 @@
           </ul>
         </div>
         <figure>
-          <img class="shot" src="img/zdarzenia-gitlab.png" width="1375" height="900" alt="Strona Zdarzenia, zakładka GitLab: dwie karty MR-ów z prośbą o review, każda z napisem „1 nowa”." loading="lazy">
-          <figcaption>Zdarzenia z GitLaba: co przyszło i dokąd poszło powiadomienie.</figcaption>
+          <img class="shot" src="img/zdarzenia-gitlab-kadr.png" data-full="img/zdarzenia-gitlab.png" width="1065" height="845" alt="Strona Zdarzenia, zakładka GitLab: dwie karty MR-ów z prośbą o review, każda z napisem „1 nowa”." loading="lazy">
+          <figcaption>Zdarzenia z GitLaba: co przyszło i dokąd poszło powiadomienie. <span class="zoom-hint">Kliknij zrzut, aby zobaczyć całe okno.</span></figcaption>
         </figure>
       </div>
 
-      <div class="band flip">
+      <div class="band flip wide">
         <div class="band-text">
           <h3><span class="src src-jira"><svg><use href="#i-key"/></svg></span>Jira: Twoje zgłoszenia</h3>
           <ul>
@@ -237,12 +249,12 @@
           </ul>
         </div>
         <figure>
-          <img class="shot" src="img/zdarzenia-jira-ciemny.png" width="1375" height="900" alt="Strona Zdarzenia w ciemnym wyglądzie: karta zgłoszenia z pięcioma nowymi komentarzami i napisem „5 nowych”." loading="lazy">
+          <img class="shot" src="img/zdarzenia-jira-ciemny-kadr.png" data-full="img/zdarzenia-jira-ciemny.png" width="1046" height="900" alt="Strona Zdarzenia w ciemnym wyglądzie: karta zgłoszenia z pięcioma nowymi komentarzami i napisem „5 nowych”." loading="lazy">
           <figcaption>Ta sama strona w ciemnym wyglądzie.</figcaption>
         </figure>
       </div>
 
-      <div class="band">
+      <div class="band wide">
         <div class="band-text">
           <h3><span class="src src-chat"><svg><use href="#i-chat"/></svg></span>Google Chat i okienka powiadomień</h3>
           <ul>
@@ -252,8 +264,8 @@
           </ul>
         </div>
         <figure class="shot-pair">
-          <img class="shot" src="img/przeglad.png" width="1006" height="191" alt="Karta codziennego przeglądu Jiry z napisem „Nowy”." loading="lazy">
-          <img src="img/okienka.png" width="475" height="502" alt="Okienka powiadomień Pulse: prośby o review z GitLaba i nowe zgłoszenie z Jiry." loading="lazy">
+          <img class="shot" src="img/przeglad-waski.png" data-full="img/przeglad.png" width="601" height="191" alt="Karta codziennego przeglądu Jiry z napisem „Nowy”." loading="lazy">
+          <img src="img/okienka.png" width="475" height="720" alt="Okienka powiadomień Pulse: prośby o review z GitLaba i nowe zgłoszenie z Jiry." loading="lazy">
         </figure>
       </div>
 
@@ -361,6 +373,29 @@
     });
     video.addEventListener("timeupdate", activeChapter);
     activeChapter();
+
+    // Click a screenshot to see it at full size; click again or press Esc to close.
+    var zoom = document.createElement("dialog");
+    zoom.className = "zoom";
+    zoom.setAttribute("aria-label", "Powiększony zrzut ekranu");
+    var big = document.createElement("img");
+    big.alt = "";
+    zoom.appendChild(big);
+    document.body.appendChild(zoom);
+    zoom.addEventListener("click", function () { zoom.close(); });
+    document.querySelectorAll(".features figure img").forEach(function (img) {
+      img.classList.add("zoomable");
+      img.tabIndex = 0;
+      img.title = "Kliknij, aby powiększyć";
+      function open() {
+        if (!zoom.showModal) return;
+        big.src = img.dataset.full || img.src;
+        big.alt = img.alt;
+        zoom.showModal();
+      }
+      img.addEventListener("click", open);
+      img.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+    });
   })();
 </script>
 </body>

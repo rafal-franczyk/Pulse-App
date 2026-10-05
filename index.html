@@ -445,16 +445,23 @@
   .s-final .f-pk { width: 13cqw; height: 13cqw; }
   .ic .pk { width: 34px; height: 34px; }
 
-  /* ---- Pills, "coming soon" note ---- */
+  /* ---- Pills ---- */
   .pill { display: inline-block; font: 700 12px/1 var(--font-ui); letter-spacing: .06em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--text); vertical-align: middle; }
-  .soon { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 0; padding: 16px 20px; border-radius: 14px; border: 1px dashed var(--border-strong); color: var(--text-2); font-size: 17px; }
 
-  /* ---- What's new ---- */
-  .news { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 12px 20px; }
-  .news li { display: grid; grid-template-columns: 54px 1fr; gap: 14px; align-items: start; padding: 16px 18px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); backdrop-filter: var(--backdrop); }
-  .news .ver { font: 500 14px/1 "Plex Mono", ui-monospace, monospace; text-align: center; padding: 6px 0; border-radius: 8px; background: var(--accent-soft); color: var(--text); margin-top: 2px; }
-  .news b { display: block; font-size: 17px; line-height: 1.3; }
-  .news p { margin: 3px 0 0; font-size: 16px; color: var(--text-2); }
+  /* ---- Roadmap ---- */
+  .road { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 18px; counter-reset: r; }
+  .road > li { position: relative; display: flex; flex-direction: column; gap: 12px; padding: 24px 24px 22px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--card-shadow); backdrop-filter: var(--backdrop); counter-increment: r; }
+  .road > li::after { content: counter(r); position: absolute; top: 20px; right: 22px; font: 500 14px/1 "Plex Mono", ui-monospace, monospace; color: var(--muted); }
+  .road header { display: flex; align-items: center; gap: 14px; padding-right: 30px; }
+  .road h3 { font-size: 22px; line-height: 1.15; }
+  .road .state { align-self: flex-start; }
+  .road .state.preview { background: var(--accent); color: var(--on-accent); }
+  .road .state.done { background: transparent; border: 1px solid var(--border-strong); color: var(--muted); }
+  .road > li.done { background: transparent; box-shadow: none; border-style: dashed; }
+  .road ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+  .road ul li { position: relative; padding-left: 20px; font-size: 17px; line-height: 1.45; color: var(--text-2); }
+  .road ul li::before { content: ""; position: absolute; left: 0; top: .66em; width: 9px; height: 2px; border-radius: 1px; background: var(--accent); }
+  .road-note { margin: 0; color: var(--muted); font-size: 16px; }
 
   /* ---- Theme gallery: colours from src/themes/<name>/<name>.css, light and dark ---- */
   .themes-head { margin-top: 22px; font-size: clamp(24px, 3vw, 30px); }
@@ -505,6 +512,9 @@
   <symbol id="i-pointer" viewBox="0 0 24 24"><path d="M9 11V4.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6.5 6.5 0 0 1-6.5 6.5h-.6a6 6 0 0 1-4.6-2.2L4.6 15.6a1.6 1.6 0 0 1 2.4-2.1L9 15.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l5 4V5L6 9H4a1 1 0 0 0-1 1zM15 9a3.5 3.5 0 0 1 0 6M18 6a8 8 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6 7h12v3a6 6 0 0 1-12 0zM12 16v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h2M14 14h2M8 17.5h2"/></g></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM8 10h8M8 13h5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-twig" viewBox="0 0 180 70"><path d="M4 58 C 50 50, 90 40, 176 14" fill="none" stroke="#7a4a26" stroke-width="3" stroke-linecap="round"/><path d="M70 44 C 74 30, 66 22, 58 18" fill="none" stroke="#7a4a26" stroke-width="2" stroke-linecap="round"/><g class="twig-leaves"><path d="M58 18 C 46 22, 44 34, 56 40 C 64 32, 64 24, 58 18 Z" fill="var(--leaf1)"/><path d="M118 30 C 112 18, 116 8, 126 4 C 134 12, 130 24, 118 30 Z" fill="var(--leaf2)"/><path d="M150 22 C 156 34, 166 36, 172 30 C 168 22, 160 18, 150 22 Z" fill="var(--leaf3)"/><path d="M30 54 C 22 44, 26 34, 36 32 C 42 40, 40 50, 30 54 Z" fill="var(--leaf4)"/></g><g class="twig-snow" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"><path d="M20 53 q 14 -9 30 -8"/><path d="M88 37 q 18 -8 34 -11"/><path d="M140 24 q 14 -6 28 -9"/></g></symbol>
 </svg>
@@ -526,7 +536,7 @@
   <div class="topbar">
     <a class="wordmark" href="#top"><span class="tile"><svg><use href="#i-pulse"/></svg></span>Pulse</a>
     <div class="right">
-      <nav aria-label="Na tej stronie"><a href="#film">Film</a><a href="#funkcje">Co potrafi</a><a href="#nowosci">Nowości</a><a href="#wyglad">Wygląd</a><a href="#start">Pierwsze kroki</a><a href="#pobierz">Pobierz</a></nav>
+      <nav aria-label="Na tej stronie"><a href="#film">Film</a><a href="#funkcje">Co potrafi</a><a href="#plany">Co przed nami</a><a href="#wyglad">Wygląd</a><a href="#start">Pierwsze kroki</a><a href="#pobierz">Pobierz</a></nav>
       <div class="look-switch" role="group" aria-label="Motyw strony">
         <button type="button" data-look="night" title="Motyw Nocne niebo"><svg><use href="#i-moon"/></svg><span class="txt">Nocne niebo</span></button>
         <button type="button" data-look="seasons" title="Motyw Pory roku"><svg class="sz sz-autumn" viewBox="0 0 24 24"><path d="M12 2C6 7 5 13 12 22C19 13 18 7 12 2Z" fill="currentColor"/></svg><svg class="sz sz-spring" viewBox="0 0 24 24"><g fill="currentColor"><ellipse cx="12" cy="6.5" rx="3.4" ry="5"/><ellipse cx="12" cy="6.5" rx="3.4" ry="5" transform="rotate(72 12 12)"/><ellipse cx="12" cy="6.5" rx="3.4" ry="5" transform="rotate(144 12 12)"/><ellipse cx="12" cy="6.5" rx="3.4" ry="5" transform="rotate(216 12 12)"/><ellipse cx="12" cy="6.5" rx="3.4" ry="5" transform="rotate(288 12 12)"/></g></svg><svg class="sz sz-summer" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="sz sz-winter" viewBox="0 0 24 24"><path d="M12 2v20M3.3 7l17.4 10M3.3 17l17.4-10M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span class="txt">Pory roku</span></button>
@@ -654,26 +664,34 @@
         <ul><li>Jeśli używasz Comarch MCP, Pulse sam znajdzie tam tokeny Jiry i GitLaba.</li><li>Token trafia do sejfu systemu dopiero wtedy, gdy połączenie działa.</li><li>Gdy token przestaje działać, a w Comarch MCP jest inny, Pulse go podpowie.</li></ul>
       </article>
     </div>
-    <p class="soon"><span class="pill">Wkrótce</span><span>W Zdarzeniach możesz już zajrzeć do zapowiedzi współpracy z Gmailem i Comarch Relay. Działają na przykładowych danych, a wyłączysz je w Ustawieniach.</span></p>
   </section>
 
-  <section class="section" id="nowosci">
-    <h2>Co nowego od <span class="hl">wersji 1.0</span></h2>
-    <p class="intro">Najważniejsze zmiany z kolejnych wersji. Pełną listę Pulse pokazuje w Aktualizacjach.</p>
-    <ol class="news">
-      <li><span class="ver">1.12</span><div><b>Jasny i ciemny tryb każdego motywu</b><p>Świt w Nocnym niebie, wieczór w Porach roku, wydruk EKG w Monitorze i notes nocą w Notatniku.</p></div></li>
-      <li><span class="ver">1.11</span><div><b>Ogłoszenia o środowisku</b><p>Synchronizacja, awaria, „droga wolna” i wstrzymanie prac, a do nich ponad 210 animacji.</p></div></li>
-      <li><span class="ver">1.10</span><div><b>Maskotka Pulsik</b><p>Jego mina pokazuje stan Pulse, a gdy jest spokojnie, Pulsik się bawi.</p></div></li>
-      <li><span class="ver">1.9</span><div><b>Ogłoszenia dla zespołu</b><p>Animowany GIF z wiadomością na Google Chat, na początek w zakładce „Sukcesy”.</p></div></li>
-      <li><span class="ver">1.8</span><div><b>Wyłączone źródło widać w Zdarzeniach</b><p>Zakładka mówi wprost, że źródło jest wyłączone, a jego przegląd wyłącza się razem z nim.</p></div></li>
-      <li><span class="ver">1.7</span><div><b>Dymek o nowej wersji</b><p>Zamiast powiadomienia Windows: ile jest nowości i poprawek, z przyciskiem „Zobacz zmiany”.</p></div></li>
-      <li><span class="ver">1.6</span><div><b>Zapowiedź Gmaila</b><p>Przykładowa zakładka w Zdarzeniach pokazuje, jak będą wyglądać nowe maile.</p></div></li>
-      <li><span class="ver">1.5</span><div><b>Zapowiedź Comarch Relay</b><p>Przykładowe rozmowy, odpowiedzi na pytania Relay i przycisk „Przekaż do Relay”.</p></div></li>
-      <li><span class="ver">1.4</span><div><b>Nowe okno wstrzymania</b><p>Pauza jednego źródła prosto z paska i przycisk, który mówi, do kiedy wstrzymasz.</p></div></li>
-      <li><span class="ver">1.3</span><div><b>Kanały Google Chat ze statusem</b><p>Przy kanale widać, czy działa, a nowy dodajesz krok po kroku.</p></div></li>
-      <li><span class="ver">1.2</span><div><b>Tokeny z Comarch MCP</b><p>Pulse sam znajdzie tokeny Jiry i GitLaba i zapisze je po sprawdzeniu.</p></div></li>
-      <li><span class="ver">1.1</span><div><b>Zaległe zmiany jako przegląd</b><p>Po dłuższej przerwie jeden przegląd: zgłoszenia według epików, MR-y według Twojej roli.</p></div></li>
+  <section class="section" id="plany">
+    <h2>Co <span class="hl">przed nami</span></h2>
+    <p class="intro">Jira i GitLab już działają. Teraz Pulse zacznie pilnować także poczty, kalendarza i rozmów w Comarch Relay.</p>
+    <ol class="road">
+      <li class="done">
+        <header><span class="ic"><svg><use href="#i-pulse"/></svg></span><h3>Jira i GitLab</h3></header>
+        <span class="pill state done">Gotowe</span>
+        <ul><li>Powiadomienia z Jiry i GitLaba o tym, co dotyczy Ciebie.</li><li>Codzienny przegląd, godziny ciszy i pauza.</li><li>Do pobrania już dziś, w wersji 1.12.0.</li></ul>
+      </li>
+      <li>
+        <header><span class="ic"><svg><use href="#i-mail"/></svg></span><h3>Gmail</h3></header>
+        <span class="pill state preview">Zapowiedź w aplikacji</span>
+        <ul><li>Nowe maile, które dotyczą Ciebie, w tym samym okienku co Jira i GitLab.</li><li>Ważne wiadomości od razu, reszta w codziennym przeglądzie.</li><li>Godziny ciszy i pauza działają tak samo jak dla innych źródeł.</li></ul>
+      </li>
+      <li>
+        <header><span class="ic"><svg><use href="#i-calendar"/></svg></span><h3>Kalendarz</h3></header>
+        <span class="pill state">W planach</span>
+        <ul><li>Przypomnienie przed spotkaniem, z linkiem do dołączenia.</li><li>Plan dnia w porannym przeglądzie.</li><li>W trakcie spotkania Pulse może poczekać z powiadomieniami.</li></ul>
+      </li>
+      <li>
+        <header><span class="ic"><svg><use href="#i-chat"/></svg></span><h3>Comarch Relay</h3></header>
+        <span class="pill state preview">Zapowiedź w aplikacji</span>
+        <ul><li>Odpowiedzi i pytania z rozmów w Relay jako powiadomienia Pulse.</li><li>Przycisk „Przekaż do Relay” przy zgłoszeniu lub MR-ze: Relay dostaje cały kontekst.</li><li>Wszystko w jednym miejscu, bez przełączania okien.</li></ul>
+      </li>
     </ol>
+    <p class="road-note">Zapowiedzi Gmaila i Comarch Relay możesz już obejrzeć w Zdarzeniach. Działają na przykładowych danych, a wyłączysz je w Ustawieniach.</p>
   </section>
 
   <section class="section" id="wyglad">
